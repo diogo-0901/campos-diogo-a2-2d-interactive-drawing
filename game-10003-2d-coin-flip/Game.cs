@@ -118,6 +118,15 @@ namespace MohawkGame2D
             Draw.Triangle(new Vector2(120, 200), new Vector2(240, 160), new Vector2(240, 200));
         }
 
+        void loungeChair(float x, float y)
+        {
+            Draw.LineSize = 5;
+            Draw.Line(new Vector2(x + 20, y + 60), new Vector2(x + 30, y + 50));
+            Draw.Line(new Vector2(x + 30, y + 50), new Vector2(x + 90, y + 50));
+            Draw.Line(new Vector2(x + 70, y + 50), new Vector2(x + 85, y + 30));
+            Draw.Line(new Vector2(x + 90, y + 50), new Vector2(x + 100, y + 60));
+        }
+
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -140,6 +149,7 @@ namespace MohawkGame2D
             sun(Input.GetMouseX(), Input.GetMouseY());
             moon(Window.Width - Input.GetMouseX(), Window.Height - Input.GetMouseY());
             beach();
+            loungeChair(230, 100);
             credits();
 
         }
