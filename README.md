@@ -1,2 +1,2 @@
-# campos-diogo-a2-2d-interactive-drawing
-A 2D graphic coin flip program that plays a looping animation after player input, randomly flips to heads or tails, and keeps a tally on how many times you flipped.
+# Sunset Beach
+A 2D graphic demo of a beach setting. Use the mouse to position the sun and set the time of day. Stars will randomly generate every time night falls.
