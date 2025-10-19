@@ -88,6 +88,7 @@ namespace MohawkGame2D
                 Draw.PolyLine(new Vector2(0, x), new Vector2(Window.Height, x));
             }
         }
+
         void sun(float x, float y)
         {
             // Draw a circle at mouse position
@@ -121,10 +122,28 @@ namespace MohawkGame2D
         void loungeChair(float x, float y)
         {
             Draw.LineSize = 5;
+            Draw.LineColor = Color.OffWhite;
             Draw.Line(new Vector2(x + 20, y + 60), new Vector2(x + 30, y + 50));
             Draw.Line(new Vector2(x + 30, y + 50), new Vector2(x + 90, y + 50));
             Draw.Line(new Vector2(x + 70, y + 50), new Vector2(x + 85, y + 30));
             Draw.Line(new Vector2(x + 90, y + 50), new Vector2(x + 100, y + 60));
+
+            Draw.LineSize = 2;
+            Draw.Line(new Vector2(x + 80, y + 40), new Vector2(x + 90, y + 50));
+
+            // Cushioning
+            Draw.LineSize = 5;
+            Draw.LineColor = Color.Red;
+            Draw.Line(new Vector2(x + 68, y + 48), new Vector2(x + 83, y + 28));
+            Draw.Line(new Vector2(x + 30, y + 48), new Vector2(x + 68, y + 48));
+        }
+
+        void umbrella()
+        {
+            Draw.LineSize = 5;
+            Draw.LineColor = Color.Gray;
+            Draw.Line(new Vector2(350, 120), new Vector2(360,160));
+
         }
 
         /// <summary>
@@ -150,6 +169,7 @@ namespace MohawkGame2D
             moon(Window.Width - Input.GetMouseX(), Window.Height - Input.GetMouseY());
             beach();
             loungeChair(230, 100);
+            umbrella();
             credits();
 
         }
