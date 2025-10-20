@@ -18,6 +18,8 @@ namespace MohawkGame2D
             Draw.LineSize = 0;
             Draw.Rectangle(0, 200, 400, 200);
         }
+
+        bool starToggle = true;
         void background()
         {
             Window.ClearBackground(Color.Black);
@@ -146,6 +148,48 @@ namespace MohawkGame2D
 
         }
 
+        void oceanWaves()
+        {
+            // Referenced from Module 4
+            float secondsPerCycle = Time.SecondsElapsed / 5;
+            float cycle = secondsPerCycle * MathF.Tau; 
+
+            float wavePos = 165;
+            float waveOffset = MathF.Sin(cycle) * 4; // 100px above and below centre
+            float positionY = wavePos + waveOffset;
+            Vector2 lineLeft = new Vector2(-3, positionY);
+            Vector2 lineRight = new Vector2(240, positionY);
+
+            Draw.LineSize = 3;
+            Draw.FillColor = new Color(0, 121, 240, 125);
+            Draw.LineColor = new Color(0, 121, 240);
+            Draw.Rectangle(lineLeft, lineRight);
+        }
+        int starCount = 0;
+        float[] xPos;
+        float[] yPos;
+        void starGenerator()
+        {
+            starCount = Random.Integer(80, 130);
+            xPos = new float[starCount];
+            yPos = new float[starCount];
+
+            for (int i = 0; i < starCount; i++)
+            {
+                xPos[i] = Random.Float(0, Window.Width);
+                yPos[i] = Random.Float(0, 200);
+            }
+        }
+        void starRender()
+        {
+            for (int i = 0; i < starCount; i++)
+            {
+                Draw.FillColor = Color.White;
+                Draw.LineSize = 0;
+                Draw.Circle(xPos[i], yPos[i], 1);
+            }
+        }
+
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -154,6 +198,7 @@ namespace MohawkGame2D
             Window.SetTitle("Sunset Beach");
             Window.SetSize(400, 400);
             Window.TargetFPS = 60;
+            starGenerator();
         }
 
         /// <summary>
@@ -163,10 +208,16 @@ namespace MohawkGame2D
         {
             background();
             skyboxNight();
+            if (Input.GetMouseY() < 180)
+            {
+                starGenerator();
+            }
+            starRender();
             skyboxOrange();
             skyboxBlue();
             sun(Input.GetMouseX(), Input.GetMouseY());
             moon(Window.Width - Input.GetMouseX(), Window.Height - Input.GetMouseY());
+            oceanWaves();
             beach();
             loungeChair(230, 100);
             umbrella();
